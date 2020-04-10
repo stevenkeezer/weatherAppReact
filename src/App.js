@@ -29,7 +29,7 @@ function App() {
   };
 
   const getDataApi = async (lat, long) => {
-    const API_KEY = process.env.REACT_APP_KEY;
+    const API_KEY = "008eb2e476bb4ac1ce396f0211fba6fc";
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=${API_KEY}`;
 
     try {
@@ -45,7 +45,7 @@ function App() {
   };
 
   const getFiveDayApi = async (lat, long) => {
-    const API_KEY = process.env.REACT_APP_KEY;
+    const API_KEY = "008eb2e476bb4ac1ce396f0211fba6fc";
     const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=imperial&src/img/sunset.svg&appid=${API_KEY}`;
 
     try {
