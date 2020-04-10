@@ -101,12 +101,12 @@ function App() {
         >
           <div className="padding">
             <div className="row">
-              {/* <Geosuggest
+              <Geosuggest
                 ref={(el) => (gs = el)}
                 placeholder="Search Locations"
                 onSuggestSelect={(e) => onSuggestSelect(e)}
                 className="ml-auto pb-2"
-              /> */}
+              />
               <button
                 className="mr-auto geosuggestBtn  mb-2 "
                 style={{
