@@ -6,8 +6,10 @@ class MainNavBar extends Component {
   render() {
     return (
       <Navbar bg="light" expand="lg">
-        <img id="navIcon" src={icon}></img>
-        <Navbar.Brand href="#home">BetterWeather</Navbar.Brand>
+        <img id="navIcon" style={{ color: "white" }} src={icon}></img>
+        <Navbar.Brand href="#home" className="ml-2" style={{ color: "white" }}>
+          BetterWeather
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
