@@ -7,6 +7,7 @@ import Geosuggest from "react-geosuggest";
 import IosLocateOutline from "react-ionicons/lib/IosLocateOutline";
 
 import "./App.css";
+require("dotenv").config();
 
 function App() {
   const [Weather, setWeather] = useState(null);
