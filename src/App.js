@@ -91,10 +91,6 @@ function App() {
   };
   return (
     <div style={appStyle} className="container-fluid text-white ">
-      <script
-        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAP}&libraries=places`}
-      ></script>
-
       <MainNavBar />
       <div>{renderWeatherIcon}</div>
       {/* {Error && <h1>My bad</h1>} */}
@@ -104,24 +100,30 @@ function App() {
           id="page-content"
         >
           <div className="padding">
-            <div className="row">
+            <div className="col-12 col-lg-8 mx-auto">
               <Geosuggest
                 ref={(el) => (gs = el)}
                 placeholder="Search Locations"
                 onSuggestSelect={(e) => onSuggestSelect(e)}
                 className="ml-auto pb-2"
               />
+
               <button
-                className="mr-auto geosuggestBtn  mb-2 "
+                onClick={() => getLocation()}
                 style={{
-                  border: "none",
+                  backgroundColor: "transparent",
+                  color: "#dddddd",
+                  position: "absolute",
+                  zIndex: 1,
+                  right: 20,
+                  top: 12,
+                  borderTop: "none",
+                  borderRight: "none",
+                  borderBottom: "none",
                   outline: "none",
                 }}
               >
-                <IosLocateOutline
-                  className=""
-                  style={{ backgroundColor: "white", color: "lightgrey" }}
-                />
+                <IosLocateOutline className="" />
               </button>
             </div>
             <div className="row container-fluid d-flex justify-content-center mx-auto">

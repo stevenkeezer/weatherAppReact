@@ -308,7 +308,7 @@ footer {
   font-size: 18px;
   font-size: 1rem;
   position: relative;
-  width: 50.9vw;
+  /* width: 50.9vw; */
   text-align: left;
 }
 .geosuggestBtn {
@@ -316,8 +316,7 @@ footer {
   height: 50px;
   z-index: 100;
   font-size: 1rem;
-  border-top-right-radius: 0.2rem;
-  border-bottom-right-radius: 0.2rem;
+  border-radius: 0.2rem;
   background-color: white !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
   -webkit-transition: border 0.2s, box-shadow 0.2s;
@@ -330,9 +329,7 @@ footer {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
   -webkit-transition: border 0.2s, box-shadow 0.2s;
   transition: border 0.2s, box-shadow 0.2s;
-  border-top-left-radius: 0.2rem;
-  border-bottom-left-radius: 0.2rem;
-
+  border-radius: 0.2rem;
   height: 50px;
 }
 .geosuggest__input:focus {
