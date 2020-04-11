@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import icon from "../img/sunset.svg";
+import icon from "../img/logo.png";
 
 class MainNavBar extends Component {
   render() {
