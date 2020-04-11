@@ -331,6 +331,7 @@ footer {
   transition: border 0.2s, box-shadow 0.2s;
   border-radius: 0.2rem;
   height: 50px;
+  padding-right: 40px;
 }
 .geosuggest__input:focus {
   border-color: #267dc0;
