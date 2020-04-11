@@ -91,6 +91,10 @@ function App() {
   };
   return (
     <div style={appStyle} className="container-fluid text-white ">
+      <script
+        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAP}&libraries=places`}
+      ></script>
+
       <MainNavBar />
       <div>{renderWeatherIcon}</div>
       {/* {Error && <h1>My bad</h1>} */}
