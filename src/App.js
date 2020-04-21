@@ -13,11 +13,18 @@ function App() {
   const [WeatherFiveDay, setFiveDayWeather] = useState(null);
   const [Loading, setLoading] = useState(true);
   const [Error, setError] = useState(false);
+  const [name, setName] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    searchWeather(name);
+    setIsSearching(true);
+  };
+
   let gs = useRef(null);
 
   const weatherIcons = [];
-
-  console.log("bla", gs);
 
   const getLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -26,6 +33,24 @@ function App() {
       getDataApi(latitude, longitude);
       getFiveDayApi(latitude, longitude);
     });
+  };
+
+  const searchWeather = async (city) => {
+    const API_KEY = process.env.REACT_APP_KEY;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      // setWeather(data);
+      console.log(data);
+      if (data.cod !== "404") {
+        setWeather(data);
+        setLoading(false);
+      }
+    } catch (error) {
+      setError(true);
+    }
   };
 
   const getDataApi = async (lat, long) => {
@@ -101,13 +126,17 @@ function App() {
         >
           <div className="padding">
             <div className="col-12 col-lg-8 mx-auto">
-              <Geosuggest
-                ref={(el) => (gs = el)}
-                placeholder="Search Locations"
-                onSuggestSelect={(e) => onSuggestSelect(e)}
-                className="ml-auto pb-2"
-              />
-
+              <form onSubmit={handleSubmit}>
+                <label>
+                  Location:
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </label>
+                <input type="submit" value="Submit" />
+              </form>
               <button
                 onClick={() => getLocation()}
                 style={{
@@ -141,7 +170,15 @@ function App() {
                     <div className="weather-data d-flex">
                       <div className="mr-auto">
                         <h2 className="display-3">
-                          {Weather && Weather.main.temp}&deg; <small>F</small>
+                          {!isSearching &&
+                            Weather &&
+                            Math.round(Weather.main.temp)}
+                          {isSearching &&
+                            Math.round(
+                              (Weather.main.temp - 273.15) * (9 / 5) + 32
+                            )}
+                          &deg;
+                          <small>F</small>
                         </h2>
                         {Weather &&
                           Weather.weather[0].description
