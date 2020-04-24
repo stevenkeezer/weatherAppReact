@@ -3,7 +3,6 @@ import Spinner from "./components/Spinner.js";
 import MainNavBar from "./components/MainNavBar.js";
 import Moment from "react-moment";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Geosuggest from "react-geosuggest";
 import IosLocateOutline from "react-ionicons/lib/IosLocateOutline";
 
 import "./App.css";
