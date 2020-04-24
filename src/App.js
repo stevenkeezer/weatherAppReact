@@ -12,6 +12,7 @@ function App() {
   const [Weather, setWeather] = useState(null);
   const [WeatherFiveDay, setFiveDayWeather] = useState(null);
   const [Loading, setLoading] = useState(true);
+  const [currentLocation, setCurrentLocation] = useState(false);
   const [Error, setError] = useState(false);
   const [name, setName] = useState("");
   const [isSearching, setIsSearching] = useState(false);
@@ -27,6 +28,7 @@ function App() {
   const weatherIcons = [];
 
   const getLocation = () => {
+    setIsSearching(false);
     navigator.geolocation.getCurrentPosition((position) => {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
@@ -36,14 +38,14 @@ function App() {
   };
 
   const searchWeather = async (city) => {
+    setIsSearching(true);
     const API_KEY = process.env.REACT_APP_KEY;
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
 
     try {
       const response = await fetch(url);
       const data = await response.json();
-      // setWeather(data);
-      console.log(data);
+
       if (data.cod !== "404") {
         setWeather(data);
         setLoading(false);
@@ -93,11 +95,8 @@ function App() {
   const w = Weather && Weather.weather[0].main;
 
   const appStyle = {
-    // marginBottom: "-30px",
-    // height: "100%",
     backgroundPosition: "center",
     backgroundSize: "cover",
-    // backgroundImage: `url('https://source.unsplash.com/random/800x800?${w}?weather?sig={{ range(1, 123) | random }}')`,
     backgroundRepeat: "none",
   };
 
@@ -118,24 +117,22 @@ function App() {
     <div style={appStyle} className="container-fluid text-white ">
       <MainNavBar />
       <div>{renderWeatherIcon}</div>
-      {/* {Error && <h1>My bad</h1>} */}
       {!Loading ? (
         <div
           className="page-content page-container container-fluid"
           id="page-content"
         >
           <div className="padding">
-            <div className="col-12 col-lg-8 mx-auto">
+            <div className="col-12 col-lg-8 mx-auto mb-2">
               <form onSubmit={handleSubmit}>
-                <label>
-                  Location:
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </label>
-                <input type="submit" value="Submit" />
+                <input
+                  type="text"
+                  value={name}
+                  className="d-flex container-fluid"
+                  placeholder="Search"
+                  className="geosuggest__input"
+                  onChange={(e) => setName(e.target.value)}
+                />
               </form>
               <button
                 onClick={() => getLocation()}
